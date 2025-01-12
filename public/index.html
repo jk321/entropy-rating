@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entropy Rating</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <p><b>Enter your username:</b></p>
+            <input type="text" id="username-input" placeholder="Your username" />
+            <button onclick="submitUsername()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <p id="user-info"><strong>User: </strong></p> <!-- Placeholder for username -->
+        <div class="toggle-container">
+            <p>Single Mode — Double Mode</p>
+            <label class="toggle-switch">
+                <input type="checkbox" id="mode-toggle" onchange="toggleMode()" />
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="instructions" class="instructions">
+            <!-- Instructions will be dynamically updated here -->
+        </div>
+        <!-- Copyright Section -->
+        <div class="copyright">
+            <p>&copy; 2025 Jakub Kozák</p>
+        </div>
+    </div>
+    
+
+    <!-- Main Content -->
+    <div class="container">
+        <div id="app-content"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/single-mode.js" defer></script>
+    <script src="/double-mode.js" defer></script>
+</body>
+</html>

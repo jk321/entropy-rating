@@ -1,0 +1,299 @@
+/* General Layout */
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif; /* Apply Trebuchet MS font */
+    background-color: #f9f9f9; /* Light background */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Flexbox for layout */
+    height: 100vh; /* Full height of the viewport */
+}
+
+
+/* Sidebar */
+.sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+    background-color: #f0f0f0; /* Light grey background */
+    display: flex; /* Enable flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align content to the top */
+    height: 100vh; /* Limit sidebar height to viewport */
+    padding: 0 20px;  /* Add inner padding */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+    overflow: hidden; /* Prevent content from overflowing */
+}
+
+.sidebar-content {
+    flex-grow: 1; /* Allow this section to take up remaining space */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Ensure the copyright stays at the bottom with space */
+.copyright {
+    margin-top: auto; /* Push the copyright section to the bottom */
+    margin-bottom: 10px; /* Add 20px space from the bottom */
+    font-size: 12px; /* Smaller font for copyright text */
+    color: #666; /* Subtle grey color */
+    text-align: center; /* Center the text */
+}
+
+
+/* Sidebar Content */
+.sidebar #user-info {
+    margin-top: 50px;
+    margin-bottom: 20px; /* Space below the username section */
+    font-size: 16px; /* Slightly larger font for the username */
+    color: rgb(35,33,33); /* Darker color for readability */
+}
+
+.sidebar .toggle-container {
+    display: flex; /* Flexbox for toggle alignment */
+    flex-direction: column; /* Stack the toggle and label vertically */
+    align-items: flex-start; /* Align everything to the left */
+    gap: 18px; /* Space between the toggle and the label */
+}
+
+.sidebar .toggle-container p {
+    margin: 0; /* Remove default paragraph margins */
+    font-size: 16px; /* Font size for labels */
+    font-weight: bold; /* Emphasize labels with bold text */
+}
+
+/* Content Container */
+.container {
+    flex-grow: 1; /* Allow this area to take up remaining space next to the sidebar */
+    display: flex; /* Flexbox for vertical stacking of content */
+    flex-direction: column; /* Stack content vertically */
+    background: white; /* White background for main content */
+    border-radius: 10px; /* Rounded corners for aesthetic */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add subtle shadow for elevation */
+    overflow: hidden; /* Prevent content from overflowing container bounds */
+}
+
+/* App Content (Flexible Layout) */
+#app-content {
+    flex-grow: 1; /* Take up all available vertical space */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100%; /* Fill the container's height */
+    width: 100%; /* Fill the container's width */
+}
+
+/* Adjust the image size in Single Mode */
+#single-image {
+    max-height: 90vh; /* Limit the height to 80% of the viewport */
+    max-width: 100%; /* Keep the image responsive */
+    margin-bottom: 0px; /* Add space below the image */
+    border-radius: 5px; /* Rounded corners */
+    object-fit: contain; /* Ensure the image fits within the constraints */
+}
+
+/* Single Mode: Centered Image with Buttons Below */
+#single-container {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    display: flex; /* Flexbox for stacking the image and buttons */
+    flex-direction: column; /* Stack image and buttons vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    height: 100%; /* Use full height of the container */
+    gap: 10px; /* Space between the image and buttons */
+}
+
+/* Buttons Below Images */
+.button-container {
+    max-height: 10vh;
+    display: flex; /* Flexbox for aligning buttons */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    margin-top: 0px; /* Space above the button container */
+}
+
+/* Double Mode: Side-by-Side Images with Buttons Below */
+#images-container {
+    display: flex; /* Display images side by side */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+    gap: 20px; /* Space between the images */
+    height:90vh; /* The container's height is 80% of the viewport height */
+    width: 100%; /* Full width for the container */
+}
+
+
+#images-container img {
+    height: 100%; /* Image height is 80% of the container height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent cropping */
+    border-radius: 10px; /* Rounded corners for better design */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    cursor: pointer; /* Change cursor to indicate clickable image */
+    transition: transform 0.2s ease; /* Smooth scaling effect */
+}
+
+#images-container img:hover {
+    transform: scale(1.05); /* Slightly enlarge image on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Intensify shadow on hover */
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 210px; /* Width of the toggle */
+    height: 25px; /* Height of the toggle */
+}
+
+.toggle-switch input {
+    opacity: 0; /* Hide the default checkbox */
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:  rgb(66, 133, 244); /* Default slider background */
+    border-radius: 25px; /* Rounded slider */
+    transition: 0.4s; /* Smooth transition for toggle */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 19px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white; /* Toggle knob color */
+    border-radius: 50%; /* Make the knob circular */
+    transition: 0.4s; /* Smooth transition for toggle knob */
+}
+
+input:checked + .slider {
+    background-color: rgb(255, 99, 178); /* Active state background */
+}
+
+input:checked + .slider:before {
+    transform: translateX(184px); /* Move knob to the right */
+}
+
+.all-rated-popup {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.all-rated-popup p {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.all-rated-popup button {
+    padding: 10px 20px; /* Padding for the button */
+    font-size: 16px; /* Font size for readability */
+    color: white; /* Button text color */
+    background-color: #007bff; /* Button background */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.all-rated-popup button:hover {
+    background-color: #007bff; /* Darker background on hover */
+}
+
+/* Headings and Buttons */
+h1 {
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 24px; /* Larger font for headings */
+    color: #444; /* Grey color for contrast */
+}
+
+button {
+    padding: 10px 20px; /* Padding for buttons */
+    font-size: 16px; /* Font size for readability */
+    color: white; /* Button text color */
+    background-color: #007bff; /* Button background */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #007bff; /* Darker background on hover */
+}
+
+/* Modal Overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position to cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Modal Content */
+.modal-content {
+    background: white; /* White background for the modal */
+    padding: 20px; /* Padding inside the modal */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center; /* Center-align text inside the modal */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    font-family: "Trebuchet MS", Arial, sans-serif; /* Explicit font for modal content */
+}
+
+/* Text in Modal */
+.modal-content p {
+    font-size: 18px; /* Slightly larger font size */
+    color: rgb(35,33,33); /* Darker text color for readability */
+    margin-bottom: 20px; /* Space below the paragraph */
+    font-family: "Trebuchet MS", Arial, sans-serif; /* Ensure Trebuchet MS for all text */
+}
+
+/* Input Field in Modal */
+.modal-content input {
+    width: 80%; /* Wide input field */
+    padding: 10px; /* Padding inside the input */
+    margin: 10px 0; /* Space above and below the input */
+    font-size: 16px; /* Font size for readability */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-family: "Trebuchet MS", Arial, sans-serif; /* Ensure Trebuchet MS for input text */
+}
+
+/* Buttons in Modal */
+.modal-content button {
+    font-family: "Trebuchet MS", Arial, sans-serif; /* Ensure Trebuchet MS for button text */
+    padding: 10px 20px; /* Add padding to buttons */
+    font-size: 16px; /* Font size for readability */
+    color: white; /* White text color */
+    background-color: rgb(66, 133, 244); /* Nice blue background */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.modal-content button:hover {
+    background-color: rgb(40, 95, 190); /* Darker blue on hover */
+}
+
+.instructions {
+    margin-top: 20px; /* Add spacing above the instructions */
+    font-size: 16px; /* Slightly smaller font for instructions */
+    color: rgb(35,33,33); /* Softer color for instructions */
+    line-height: 1.6; /* Add spacing between lines for readability */
+}
