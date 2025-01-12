@@ -7,8 +7,8 @@ app.use(express.static('public'));
 
 // JSONBin configuration
 const JSONBIN_API_KEY = '$2a$10$WWJZAd9FY4XjoOVyMtIRauSZjVfF/T2jRCL/QHY0QOIO8zm/VU.y2'; // Replace with your actual API key
-const SINGLE_MODE_BIN_ID = '6783b19aacd3cb34a8ca62ad'; // Replace with your Single Mode Bin ID
-const DOUBLE_MODE_BIN_ID = '6783b190acd3cb34a8ca62a8'; // Replace with your Double Mode Bin ID
+const SINGLE_MODE_BIN_ID = '6783b580e41b4d34e4762a1f'; // Replace with your Single Mode Bin ID
+const DOUBLE_MODE_BIN_ID = '6783b55ce41b4d34e4762a15'; // Replace with your Double Mode Bin ID
 
 // JSONBin API URLs
 const JSONBIN_BASE_URL = 'https://api.jsonbin.io/v3/b';
