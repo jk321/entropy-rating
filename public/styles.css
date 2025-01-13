@@ -297,3 +297,25 @@ button:hover {
     color: rgb(35,33,33); /* Softer color for instructions */
     line-height: 1.6; /* Add spacing between lines for readability */
 }
+
+.ratings-progress, .countdown {
+    margin-top: 20px; /* Space between sections */
+    font-size: 14px; /* Smaller font for these sections */
+    color: #555; /* Softer color for readability */
+    line-height: 1.6; /* Add spacing between lines */
+}
+
+.ratings-progress p, .countdown p {
+    margin: 0; /* Remove default paragraph margins */
+}
+
+.countdown {
+    display: flex;
+    justify-content: center; /* Center the timer horizontally */
+    align-items: center; /* Center the timer vertically */
+    margin-top: 20px; /* Space above the timer */
+    font-size: 30px; /* Larger font for better visibility */
+    font-weight: bold; /* Make the timer text bold */
+    color: red; /* Red color for the countdown */
+}
+

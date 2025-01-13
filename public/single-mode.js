@@ -44,10 +44,10 @@ function toggleMode() {
     // Update instructions based on mode
     const instructions = document.getElementById('instructions');
     if (toggle.checked) {
-        instructions.innerHTML = "<p>Evaluate the entropy of the displayed folio and provide a rating.</p>";
+        instructions.innerHTML = "<p>Compare the two folios shown. Click on the one you believe has <strong>higher</strong> entropy.</p>";
         loadDoubleMode(); // Load Double Mode when toggle is ON
     } else {
-        instructions.innerHTML = "<p>Compare the two folios shown. Click on the one you believe has higher entropy.</p>";
+        instructions.innerHTML = "<p>Evaluate the entropy of the displayed folio and provide a rating.</p>";
         loadSingleMode(); // Load Single Mode when toggle is OFF
     }
 }
@@ -59,13 +59,6 @@ window.onload = () => {
     instructions.innerHTML = "<p>Evaluate the entropy of the displayed folio and provide a rating.</p>"; // Default to Single Mode
 };
 
-
-
-// Update the mode label (Single Mode or Double Mode)
-function updateModeLabel(isDoubleMode) {
-    const modeLabel = document.getElementById('mode-label');
-    modeLabel.textContent = isDoubleMode ? 'Double Mode' : 'Single Mode';
-}
 
 // Load Single Mode
 async function loadSingleMode() {
