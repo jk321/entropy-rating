@@ -7,8 +7,8 @@ let sessionCount = 0;
 
 // Define a calibration combination
 let calibrationPair = {
-    imageLeft: { shelfmark: "CAL1", url: "https://cdn.pixabay.com/photo/2023/08/18/15/02/dog-8198719_1280.jpg" },
-    imageRight: { shelfmark: "CAL2", url: "https://static.toiimg.com/thumb/114390036/114390036.jpg?height=746&width=420&resizemode=76&imgsize=44720" },
+    imageLeft: { shelfmark: "NK Teplá MS D 13, 054", url: "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/pilot-set/NK_Tepla%CC%81_MS_D_13_054.png" },
+    imageRight: { shelfmark: "NK XXIII D 157, 101v", url: "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/pilot-set/NK_XXIII_D_157_f101v.png" },
     shown: false // Track if it has been shown
 };
 
