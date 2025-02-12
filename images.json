@@ -1,0 +1,23 @@
+{
+    "images": [
+        { "shelfmark": "NK III F 4, 150v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_III_F_4_f150v.jpg" },
+        { "shelfmark": "NK III H 8, 128v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_III_H_8_f128v.jpg" },
+        { "shelfmark": "NK IV E 23, 150v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_IV_E_23_f150v.jpg" },
+        { "shelfmark": "NK IV F 4, 400v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_IV_F_4_f400v.jpg" },
+        { "shelfmark": "NK I B 32, 010r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_B_32_f010r.jpg" },
+        { "shelfmark": "NK I C 48, 004v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_C_48_f004v.jpg" },
+        { "shelfmark": "NK I D 46, 002r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_D_46_f002r.jpg" },
+        { "shelfmark": "NK I F 44, 050v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_F_44_f050v.jpg" },
+        { "shelfmark": "NK I F 44, 008r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_F_44_f008r.jpg" },
+        { "shelfmark": "NK I G 31, 068v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_G_31_f068v.jpg" },
+        { "shelfmark": "NK I G 48, 008r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_G_48_f008r.jpg" },
+        { "shelfmark": "NK I G 48, 131v", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_I_G_48_f131v.jpg" },
+        { "shelfmark": "NK V D 13, 059r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_V_D_13_f059r.jpg" },
+        { "shelfmark": "NK V E 9, 138r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_V_E_9_f138r.jpg" },
+        { "shelfmark": "NK V H 14, 055r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_V_H_14_f055r.jpg" },
+        { "shelfmark": "NK XVII C 22, 044r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_XVII_C_22_f044r.jpg" },
+        { "shelfmark": "NK XVII F 13, 186r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_XVII_F_13_f186r.jpg" },
+        { "shelfmark": "NK XXIII F 194, 135r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_XXIII_F_194_f135r.jpg" },
+        { "shelfmark": "NK XXIII G 57, 043r", "url": "https://raw.githubusercontent.com/jk321/entropy-rating/refs/heads/main/set-2/NK_XXIII_G_57_f043r.jpg" }
+    ]
+}
