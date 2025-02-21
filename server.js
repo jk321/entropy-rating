@@ -6,9 +6,9 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // JSONBin configuration
-const JSONBIN_API_KEY = '$2a$10$WWJZAd9FY4XjoOVyMtIRauSZjVfF/T2jRCL/QHY0QOIO8zm/VU.y2'; // API key
-const SINGLE_MODE_BIN_ID = '6783b580e41b4d34e4762a1f'; // Single Mode Bin ID
-const DOUBLE_MODE_BIN_ID = '67ac5163acd3cb34a8decbef'; // Double Mode Bin ID
+const JSONBIN_API_KEY = process.env.JSONBIN_API_KEY;
+const SINGLE_MODE_BIN_ID = '6783b580e41b4d34e4762a1f';
+const DOUBLE_MODE_BIN_ID = process.env.DOUBLE_MODE_BIN_ID;
 const JSONBIN_BASE_URL = 'https://api.jsonbin.io/v3/b';
 
 // Helper function to fetch data from JSONBin
