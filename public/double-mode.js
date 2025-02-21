@@ -1,5 +1,6 @@
 let imagePairs = [];
 let ratedPairs = [];
+let lastShownImages = []; // Track URLs of last shown images
 let countdownDuration = 5000; // Countdown duration in milliseconds
 let countdownInterval = null;
 let sessionLimit = 20;
@@ -61,10 +62,10 @@ async function loadDoubleMode() {
     sessionID = generateSessionID();
     calibrationPair.shown = false; // Reset calibration pair for the session
     calibrationPair.randomSlot = Math.floor(Math.random() * sessionLimit); // Assign random slot
+    lastShownImages = []; // Reset last shown images
     updateLeftForRating(); // Initialize the "Left for rating" counter
     displayRandomPair();
 }
-
 
 function generateUniquePairs(images) {
     for (let i = 0; i < images.length; i++) {
@@ -101,26 +102,52 @@ function displayRandomPair() {
 
     if (isCalibrationTurn) {
         calibrationPair.shown = true;
+        lastShownImages = [calibrationPair.imageLeft.url, calibrationPair.imageRight.url];
         showPair(calibrationPair.imageLeft, calibrationPair.imageRight, true);
         return;
     }
 
     // Get unrated pairs
-    const unratedPairs = imagePairs.filter(pair => !isPairRated(pair));
+    let unratedPairs = imagePairs.filter(pair => !isPairRated(pair));
 
-    // If no unrated pairs are left, end the session
+    // If there are last shown images, filter out pairs containing them
+    if (lastShownImages.length > 0) {
+        unratedPairs = unratedPairs.filter(pair => 
+            !lastShownImages.includes(pair[0].url) && 
+            !lastShownImages.includes(pair[1].url)
+        );
+    }
+
+    // If no valid pairs are left after filtering
     if (unratedPairs.length === 0) {
-        endSession();
-        return;
+        // Try again without the consecutive image restriction
+        unratedPairs = imagePairs.filter(pair => !isPairRated(pair));
+        
+        // If still no pairs, end session
+        if (unratedPairs.length === 0) {
+            endSession();
+            return;
+        }
     }
 
     // Select a random unrated pair and display it
     const randomPair = unratedPairs[Math.floor(Math.random() * unratedPairs.length)];
+    
+    // Update last shown images
+    lastShownImages = [randomPair[0].url, randomPair[1].url];
+    
     showPair(randomPair[0], randomPair[1], false);
 }
 
-
 function showPair(imageLeft, imageRight, isCalibration) {
+    const appContent = document.getElementById('app-content');
+    appContent.innerHTML = `
+        <div id="images-container">
+            <img id="image-left" src="" alt="Image Left" />
+            <img id="image-right" src="" alt="Image Right" />
+        </div>
+    `;
+
     const leftImageElement = document.getElementById('image-left');
     const rightImageElement = document.getElementById('image-right');
 
@@ -130,33 +157,81 @@ function showPair(imageLeft, imageRight, isCalibration) {
     rightImageElement.src = imageRight.url;
     rightImageElement.dataset.shelfmark = imageRight.shelfmark;
 
-    let remainingTime = countdownDuration; // Initialize remaining time in milliseconds
+    let remainingTime = countdownDuration;
+
+    async function handleImageClick(clickedImage, otherImage, choice) {
+        clearInterval(countdownInterval);
+        
+        // Add flash overlay to clicked image
+        const overlay = document.createElement('div');
+        overlay.className = 'flash-overlay';
+        overlay.style.position = 'fixed';
+        
+        const rect = clickedImage.getBoundingClientRect();
+        overlay.style.top = `${rect.top}px`;
+        overlay.style.left = `${rect.left}px`;
+        overlay.style.width = `${rect.width}px`;
+        overlay.style.height = `${rect.height}px`;
+        
+        document.body.appendChild(overlay);
+        
+        // Wait for flash animation
+        await new Promise(resolve => setTimeout(resolve, 300));
+        overlay.remove();
+
+        // Add fade-out to both images
+        clickedImage.classList.add('fade-out');
+        otherImage.classList.add('fade-out');
+
+        // Wait for fade-out before proceeding
+        await new Promise(resolve => setTimeout(resolve, 400));
+
+        await ratePair(imageLeft, imageRight, choice, true, remainingTime, isCalibration);
+        sessionCount++;
+        updateLeftForRating();
+        displayRandomPair();
+    }
 
     // Add click event listeners for images
-    leftImageElement.onclick = async () => {
-        clearInterval(countdownInterval); // Stop countdown
-        await ratePair(imageLeft, imageRight, 'left', true, remainingTime, isCalibration);
-        sessionCount++;
-        updateLeftForRating(); // Update the "Left for rating" counter
-        displayRandomPair();
-    };
-
-    rightImageElement.onclick = async () => {
-        clearInterval(countdownInterval); // Stop countdown
-        await ratePair(imageLeft, imageRight, 'right', true, remainingTime, isCalibration);
-        sessionCount++;
-        updateLeftForRating(); // Update the "Left for rating" counter
-        displayRandomPair();
-    };
+    leftImageElement.onclick = () => handleImageClick(leftImageElement, rightImageElement, 'left');
+    rightImageElement.onclick = () => handleImageClick(rightImageElement, leftImageElement, 'right');
 
     // Start the countdown
-    startCountdown(() => {
+    startCountdown(async () => {
+        clearInterval(countdownInterval);
+
+        // Add red flash overlay to both images
+        for (let image of [leftImageElement, rightImageElement]) {
+            const overlay = document.createElement('div');
+            overlay.className = 'flash-overlay-timeout';
+            overlay.style.position = 'fixed';
+            
+            const rect = image.getBoundingClientRect();
+            overlay.style.top = `${rect.top}px`;
+            overlay.style.left = `${rect.left}px`;
+            overlay.style.width = `${rect.width}px`;
+            overlay.style.height = `${rect.height}px`;
+            
+            document.body.appendChild(overlay);
+        }
+
+        // Wait for flash animation
+        await new Promise(resolve => setTimeout(resolve, 300));
+        document.querySelectorAll('.flash-overlay-timeout').forEach(el => el.remove());
+
+        // Add fade-out to both images
+        leftImageElement.classList.add('fade-out');
+        rightImageElement.classList.add('fade-out');
+
+        // Wait for fade-out before proceeding
+        await new Promise(resolve => setTimeout(resolve, 400));
+
         sessionCount++;
-        updateLeftForRating(); // Update the "Left for rating" counter
+        updateLeftForRating();
         ratePair(imageLeft, imageRight, null, false, 0, isCalibration);
         displayRandomPair();
     }, (timeLeft) => {
-        remainingTime = timeLeft; // Update remaining time as countdown proceeds
+        remainingTime = timeLeft;
     });
 }
 
@@ -227,7 +302,6 @@ async function ratePair(imageLeft, imageRight, choice, entropyRated, timeRemaini
         console.error("Error saving rating:", error);
     }
 }
-
 
 function startCountdown(callback, updateRemainingTime) {
     const timerElement = document.getElementById('countdown-timer');
