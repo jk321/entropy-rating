@@ -81,9 +81,10 @@ app.post('/save-rating/double', async (req, res) => {
         loserLowerEntropy,
         folio1,
         folio2,
-        thinkingTime,
-        sessionLimit = 4,
+        thinkingTime
     } = req.body;
+
+    const SESSION_LIMIT = 20; // Define fixed session limit
 
     if (!sessionID || entropyRated === undefined || !user || !timestamp) {
         return res.status(400).send("Missing required fields.");
@@ -125,7 +126,8 @@ app.post('/save-rating/double', async (req, res) => {
 
         session.combinations.push(combination);
 
-        if (session.combinations.length >= sessionLimit) {
+        // Mark as completed only when exactly 20 combinations are rated
+        if (session.combinations.length === SESSION_LIMIT) {
             session.completed = true;
         }
 
