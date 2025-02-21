@@ -12,22 +12,22 @@
         <div class="modal-content">
             <p><b>Enter your username:</b></p>
             <input type="text" id="username-input" placeholder="Your username" />
-            <button onclick="submitUsername()">Submit</button>
+            <div class="login-instructions">
+                <ul>
+                    <li>Compare the two folios shown. Click on the one you believe has <strong>higher</strong> entropy (more visual complexity/chaos)</li>
+                    <li>You have 5 seconds to make your choice</li>
+                    <li>If you don't select an image within the time limit, both images will be skipped</li>
+                </ul>
+            </div>
+            <button onclick="submitUsername()">Start</button>
         </div>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <p id="user-info"><strong>User: </strong></p> <!-- Placeholder for username -->
-        <div class="toggle-container">
-            <p>Single Mode — Double Mode</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="mode-toggle" onchange="toggleMode()" />
-                <span class="slider"></span>
-            </label>
-        </div>
+        <p id="user-info"><strong>User: </strong></p>
         <div id="instructions" class="instructions">
-            <!-- Instructions will be dynamically updated here -->
+            <p>Compare the two folios shown. Click on the one you believe has higher entropy (more visual complexity/chaos).</p>
         </div>
         <!-- Ratings Progress -->
         <div id="ratings-progress" class="ratings-progress">
@@ -35,7 +35,7 @@
         </div>
         <!-- Countdown Timer -->
         <div class="countdown">
-            <span id="countdown-timer">3:00</span>
+            <span id="countdown-timer">5:00</span>
         </div>             
         <!-- Copyright Section -->
         <div class="copyright">
@@ -43,14 +43,13 @@
         </div>
     </div>
     
-
     <!-- Main Content -->
     <div class="container">
         <div id="app-content"></div>
     </div>
 
     <!-- Scripts -->
-    <script src="/single-mode.js" defer></script>
+    <script src="/login.js" defer></script>
     <script src="/double-mode.js" defer></script>
 </body>
 </html>
